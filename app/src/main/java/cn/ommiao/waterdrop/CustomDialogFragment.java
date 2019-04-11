@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -16,6 +18,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 
 import cn.ommiao.waterdrop.databinding.FragmentCustomDialogBinding;
 
@@ -99,5 +104,25 @@ public class CustomDialogFragment extends DialogFragment {
     public interface OnClickActionListener{
         void onLeftClick();
         void onRightClick();
+    }
+
+    @Override
+    public void show(FragmentManager manager, String tag) {
+        try {
+            Class c=Class.forName("android.support.v4.app.DialogFragment");
+            Constructor con = c.getConstructor();
+            Object obj = con.newInstance();
+            Field dismissed = c.getDeclaredField("mDismissed");
+            dismissed.setAccessible(true);
+            dismissed.set(obj,false);
+            Field shownByMe = c.getDeclaredField("mShownByMe");
+            shownByMe.setAccessible(true);
+            shownByMe.set(obj,false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        FragmentTransaction ft = manager.beginTransaction();
+        ft.add(this, tag);
+        ft.commitAllowingStateLoss();
     }
 }
