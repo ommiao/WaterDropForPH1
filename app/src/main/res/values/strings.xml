@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Water Drop</string>
+    <string name="for_essential_ph1">--For Essential PH1</string>
+    <string name="permission_tips">模拟水滴屏需要申请悬浮窗权限，请授予相应权限以使App正常运行。</string>
+    <string name="tips">提示</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="no_permission_tips">未获取悬浮窗权限，App无法正常运行</string>
+</resources>
