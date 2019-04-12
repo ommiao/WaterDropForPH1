@@ -74,26 +74,4 @@ public class WaterDropView extends View {
         return displayMetrics.widthPixels;
     }
 
-    public int getMiddleSpace(){
-        return middleSpace;
-    }
-
-    public void bigMiddleSpace(){
-        if(middleSpace >= 200){
-            return;
-        }
-        middleSpace++;
-        path.reset();
-        invalidate();
-    }
-
-    public void smallMiddleSpace(){
-        if(middleSpace <= 10){
-            return;
-        }
-        middleSpace--;
-        path.reset();
-        invalidate();
-    }
-
 }

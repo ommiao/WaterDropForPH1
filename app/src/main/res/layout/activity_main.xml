@@ -52,48 +52,18 @@
 
         </FrameLayout>
 
-        <Button
-            android:id="@+id/btn_show"
+        <FrameLayout
             android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="显示"/>
-
-        <Button
-            android:id="@+id/btn_hide"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="隐藏"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="space:"/>
-
-            <TextView
-                android:id="@+id/tv_space"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="40"/>
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_big_space"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="加大宽度"/>
-
-        <Button
-            android:id="@+id/btn_small_space"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="减小宽度"/>
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_switch"
+            android:clickable="true"
+            app:fabSize="mini" />
 
     </LinearLayout>
 

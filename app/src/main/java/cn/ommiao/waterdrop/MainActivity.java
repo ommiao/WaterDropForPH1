@@ -24,27 +24,8 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         super.onCreate(savedInstanceState);
         ActivityMainBinding mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         ImmersionBar.with(this).init();
-
         checkFloatingPermission();
-
         initScreenRotationBroadcast();
-
-        mBinding.btnShow.setOnClickListener(v -> WaterDropManager.getInstance(this).show());
-        mBinding.btnHide.setOnClickListener(v -> WaterDropManager.getInstance(this).hide());
-
-        mBinding.btnBigSpace.setOnClickListener(v -> {
-            if(WaterDropManager.getInstance(this).isShow()){
-                WaterDropManager.getInstance(this).bigMiddleSpace();
-                mBinding.tvSpace.setText(String.valueOf(WaterDropManager.getInstance(this).getSpace()));
-            }
-        });
-
-        mBinding.btnSmallSpace.setOnClickListener(v -> {
-            if(WaterDropManager.getInstance(this).isShow()){
-                WaterDropManager.getInstance(this).smallMiddleSpace();
-                mBinding.tvSpace.setText(String.valueOf(WaterDropManager.getInstance(this).getSpace()));
-            }
-        });
     }
 
     private void initScreenRotationBroadcast() {

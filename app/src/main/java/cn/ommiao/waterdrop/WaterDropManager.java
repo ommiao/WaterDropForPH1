@@ -79,16 +79,4 @@ public class WaterDropManager {
         return isShow;
     }
 
-    public int getSpace(){
-        return waterDropView == null ? 0 : waterDropView.getMiddleSpace();
-    }
-
-    public void bigMiddleSpace(){
-        waterDropView.bigMiddleSpace();
-    }
-
-    public void smallMiddleSpace(){
-        waterDropView.smallMiddleSpace();
-    }
-
 }
