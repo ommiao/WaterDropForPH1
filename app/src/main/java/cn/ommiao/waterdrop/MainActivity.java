@@ -26,6 +26,13 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         ImmersionBar.with(this).init();
         checkFloatingPermission();
         initScreenRotationBroadcast();
+        mBinding.fab.setOnClickListener(v -> {
+            if(WaterDropManager.getInstance(this).isShow()){
+                WaterDropManager.getInstance(this).animateHide();
+            } else {
+                WaterDropManager.getInstance(this).animateShow();
+            }
+        });
     }
 
     private void initScreenRotationBroadcast() {

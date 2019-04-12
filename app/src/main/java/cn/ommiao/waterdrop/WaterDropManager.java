@@ -1,5 +1,7 @@
 package cn.ommiao.waterdrop;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.PixelFormat;
@@ -7,6 +9,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AccelerateInterpolator;
 
 import cn.ommiao.waterdrop.widget.WaterDropView;
 
@@ -17,6 +20,7 @@ public class WaterDropManager {
     private Context mContext;
 
     private boolean isShow = false;
+    private boolean animating = false;
 
     private View floatView;
     private WaterDropView waterDropView;
@@ -58,6 +62,9 @@ public class WaterDropManager {
     }
 
     public void show() {
+        if(animating){
+            return;
+        }
         try {
             mWindowManager.addView(floatView, params);
             isShow = true;
@@ -67,12 +74,53 @@ public class WaterDropManager {
     }
 
     public void hide() {
+        if(animating){
+            return;
+        }
         try {
             mWindowManager.removeView(floatView);
             isShow = false;
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void animateShow(){
+        if(animating){
+            return;
+        }
+        show();
+        animating = true;
+        waterDropView.setTranslationY(-125f);
+        ObjectAnimator animator = ObjectAnimator.ofFloat(waterDropView, "translationY", -125, 0);
+        animator.setInterpolator(new AccelerateInterpolator());
+        animator.setDuration(300);
+        animator.addListener(new SimpleAnimatorListener(){
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                animating = false;
+            }
+        });
+        animator.start();
+    }
+
+    public void animateHide(){
+        if(animating){
+            return;
+        }
+        animating = true;
+        waterDropView.setTranslationY(0f);
+        ObjectAnimator animator = ObjectAnimator.ofFloat(waterDropView, "translationY", 0, -125);
+        animator.setInterpolator(new AccelerateInterpolator());
+        animator.setDuration(300);
+        animator.addListener(new SimpleAnimatorListener(){
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                animating = false;
+                hide();
+            }
+        });
+        animator.start();
     }
 
     public boolean isShow(){
