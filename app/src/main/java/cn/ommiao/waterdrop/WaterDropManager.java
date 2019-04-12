@@ -57,26 +57,22 @@ public class WaterDropManager {
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
     }
 
-    public boolean show() {
+    public void show() {
         try {
             mWindowManager.addView(floatView, params);
             isShow = true;
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
     }
 
-    public boolean hide() {
+    public void hide() {
         try {
             mWindowManager.removeView(floatView);
             isShow = false;
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
     }
 
     public boolean isShow(){

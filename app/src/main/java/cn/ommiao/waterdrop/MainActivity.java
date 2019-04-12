@@ -1,17 +1,23 @@
 package cn.ommiao.waterdrop;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Surface;
 
 import com.gyf.barlibrary.ImmersionBar;
 
 import cn.ommiao.waterdrop.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements CustomDialogFragment.OnClickActionListener {
+
+    private ScreenRotationReceiver screenRotationReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         ImmersionBar.with(this).init();
 
         checkFloatingPermission();
+
+        initScreenRotationBroadcast();
 
         mBinding.btnShow.setOnClickListener(v -> WaterDropManager.getInstance(this).show());
         mBinding.btnHide.setOnClickListener(v -> WaterDropManager.getInstance(this).hide());
@@ -37,6 +45,13 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
                 mBinding.tvSpace.setText(String.valueOf(WaterDropManager.getInstance(this).getSpace()));
             }
         });
+    }
+
+    private void initScreenRotationBroadcast() {
+        screenRotationReceiver = new ScreenRotationReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.intent.action.CONFIGURATION_CHANGED");
+        registerReceiver(screenRotationReceiver, filter);
     }
 
     private void checkFloatingPermission() {
@@ -88,5 +103,23 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(screenRotationReceiver);
+    }
+
+    class ScreenRotationReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int rotation = getWindowManager().getDefaultDisplay().getRotation();
+            if(rotation == Surface.ROTATION_0){
+                WaterDropManager.getInstance(MainActivity.this).show();
+            } else {
+                WaterDropManager.getInstance(MainActivity.this).hide();
+            }
+        }
+    }
 
 }
