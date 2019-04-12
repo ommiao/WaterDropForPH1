@@ -1,6 +1,8 @@
 package cn.ommiao.waterdrop.widget;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -11,6 +13,8 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 
+import cn.ommiao.waterdrop.R;
+
 public class WaterDropView extends View {
 
     private int screenWidth, middleX, middleSpace = 57;
@@ -18,6 +22,8 @@ public class WaterDropView extends View {
     private int ovalWidth = 400, ovalHeight = 250;
 
     private int ovalAngle = 80;
+
+    private Bitmap camera;
 
     public WaterDropView(Context context) {
         this(context, null);
@@ -35,6 +41,7 @@ public class WaterDropView extends View {
         super(context, attrs, defStyleAttr, defStyleRes);
         screenWidth = getScreenWidth();
         middleX = screenWidth / 2;
+        camera = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_camera);
     }
 
     Paint paint = new Paint();
@@ -64,6 +71,7 @@ public class WaterDropView extends View {
         path.close();
 
         canvas.drawPath(path, paint);
+        canvas.drawBitmap(camera, middleX - camera.getWidth() / 2, ovalHeight / 2 - camera.getHeight(), null);
     }
 
     private int getScreenWidth() {
