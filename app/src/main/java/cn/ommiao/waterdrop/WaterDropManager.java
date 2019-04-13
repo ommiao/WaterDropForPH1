@@ -15,6 +15,8 @@ import cn.ommiao.waterdrop.widget.WaterDropView;
 
 public class WaterDropManager {
 
+    private static final float animateOffset = 145;
+
     private WindowManager mWindowManager;
     private static WaterDropManager mInstance;
     private Context mContext;
@@ -91,8 +93,8 @@ public class WaterDropManager {
         }
         show();
         animating = true;
-        waterDropView.setTranslationY(-125f);
-        ObjectAnimator animator = ObjectAnimator.ofFloat(waterDropView, "translationY", -125, 0);
+        waterDropView.setTranslationY(-animateOffset);
+        ObjectAnimator animator = ObjectAnimator.ofFloat(waterDropView, "translationY", -animateOffset, -1);
         animator.setInterpolator(new AccelerateInterpolator());
         animator.setDuration(300);
         animator.addListener(new SimpleAnimatorListener(){
@@ -109,8 +111,8 @@ public class WaterDropManager {
             return;
         }
         animating = true;
-        waterDropView.setTranslationY(0f);
-        ObjectAnimator animator = ObjectAnimator.ofFloat(waterDropView, "translationY", 0, -125);
+        waterDropView.setTranslationY(-1f);
+        ObjectAnimator animator = ObjectAnimator.ofFloat(waterDropView, "translationY", -1, -animateOffset);
         animator.setInterpolator(new AccelerateInterpolator());
         animator.setDuration(300);
         animator.addListener(new SimpleAnimatorListener(){

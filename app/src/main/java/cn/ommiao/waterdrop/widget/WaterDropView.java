@@ -19,9 +19,9 @@ public class WaterDropView extends View {
 
     private int screenWidth, middleX, middleSpace = 57;
 
-    private int ovalWidth = 400, ovalHeight = 250;
+    private int ovalWidth = 380, ovalHeight = 250;
 
-    private int ovalAngle = 80;
+    private int ovalAngle = 78;
 
     private Bitmap camera;
 
@@ -48,13 +48,16 @@ public class WaterDropView extends View {
     Path path  = new Path();
     RectF rectFL = new RectF();
     RectF rectFR = new RectF();
+    RectF rectFC = new RectF();
+    RectF rectFT = new RectF();
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
-
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
 
         rectFL.left = middleX - middleSpace - ovalWidth;
         rectFL.top = 0;
@@ -65,13 +68,26 @@ public class WaterDropView extends View {
         rectFR.right = middleX + middleSpace + ovalWidth;
         rectFR.bottom = ovalHeight;
 
+        rectFT.left = rectFL.left + ovalWidth / 2;
+        rectFT.top = 0;
+        rectFT.right = rectFR.left + ovalWidth / 2;
+        rectFT.bottom = 1;
+        canvas.drawRect(rectFT, paint);
+
         path.arcTo(rectFL, 270 + ovalAngle, -ovalAngle);
         path.lineTo(middleX + ovalWidth / 2, 0);
         path.arcTo(rectFR, 270, -ovalAngle);
         path.close();
 
         canvas.drawPath(path, paint);
-        canvas.drawBitmap(camera, middleX - camera.getWidth() / 2, ovalHeight / 2 - camera.getHeight(), null);
+        int top = 25;
+        int offset = 7;
+        rectFC.left = middleX - middleSpace - offset;
+        rectFC.top = top;
+        rectFC.right = middleX + middleSpace + offset;
+        rectFC.bottom = top + middleSpace * 2;
+        canvas.drawArc(rectFC, 0, 180, true, paint);
+        canvas.drawBitmap(camera, middleX - camera.getWidth() / 2, ovalHeight / 2 - camera.getHeight() - 3, null);
     }
 
     private int getScreenWidth() {

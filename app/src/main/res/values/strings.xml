@@ -10,6 +10,7 @@
     <string name="app_desc_rule1">1. 本软件仅通过官方ROM045版本测试，不保证其他任何型号或任何ROM均可生效。</string>
     <string name="app_desc_rule2">2. 软件通过悬浮窗权限，在摄像头下方覆盖水滴状填充层达到伪水滴效果。</string>
     <string name="app_desc_rule3">3. 因应用级悬浮窗无法获取系统级别权限，因此在某些场景下失效（如下拉通知时、锁屏界面等）。</string>
-    <string name="app_desc_rule4">4. 为保证软件保持有效，请保持后台运行。</string>
+    <string name="app_desc_rule4">4. 为保证软件持续有效，请保持后台运行。</string>
     <string name="app_name_en">Water Drop</string>
+    <string name="app_desc_rule5">5. 开启水滴模式会影响截图效果，但可能引起极度舒适。</string>
 </resources>
