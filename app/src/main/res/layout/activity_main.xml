@@ -124,14 +124,44 @@
 
         </FrameLayout>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:src="@drawable/ic_switch"
-            android:clickable="true"
-            app:fabSize="mini" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_switch"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:layout_marginBottom="30dp"
+                app:fabSize="mini" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_clear_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="30dp"
+                android:layout_toStartOf="@+id/fab"
+                android:src="@drawable/icon_clear"
+                app:fabCustomSize="30dp"
+                tools:ignore="RelativeOverlap" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_clear_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="30dp"
+                android:layout_toEndOf="@+id/fab"
+                android:src="@drawable/icon_clear"
+                app:fabCustomSize="30dp"
+                tools:ignore="RelativeOverlap" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 

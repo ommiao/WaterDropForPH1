@@ -10,6 +10,7 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Surface;
+import android.widget.Toast;
 
 import com.gyf.barlibrary.ImmersionBar;
 
@@ -33,6 +34,31 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
                 WaterDropManager.getInstance(this).animateShow();
             }
         });
+        mBinding.fabClearLeft.setOnClickListener(v -> {
+            if(WaterDropManager.getInstance(this).isShow()){
+                startNotificationSettings();
+            } else {
+                Toast.makeText(this, R.string.waterdrop_not_start, Toast.LENGTH_SHORT).show();
+            }
+        });
+        mBinding.fabClearRight.setOnClickListener(v -> {
+            if(WaterDropManager.getInstance(this).isShow()){
+                startNotificationSettings();
+            } else {
+                Toast.makeText(this, R.string.waterdrop_not_start, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void startNotificationSettings() {
+        try {
+            Intent intent = new Intent("android.settings.APP_NOTIFICATION_SETTINGS");
+            intent.putExtra("android.provider.extra.APP_PACKAGE", "android");
+            startActivity(intent);
+        } catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(this, R.string.waterdrop_open_settings_fail, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initScreenRotationBroadcast() {

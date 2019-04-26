@@ -13,4 +13,6 @@
     <string name="app_desc_rule4">4. 为保证软件持续有效，请保持后台运行。</string>
     <string name="app_name_en">Water Drop</string>
     <string name="app_desc_rule5">5. 开启水滴模式会影响截图效果，但可能引起极度舒适。</string>
+    <string name="waterdrop_not_start">水滴模拟未开启</string>
+    <string name="waterdrop_open_settings_fail">打开通知设置失败</string>
 </resources>
