@@ -29,15 +29,15 @@ public class WaterDropManager {
 
     private WindowManager.LayoutParams params;
 
-    public static WaterDropManager getInstance(Context context) {
-        if (mInstance == null) {
+    public static WaterDropManager getInstance(Context context, boolean forceCreateNew) {
+        if (mInstance == null || forceCreateNew) {
             mInstance = new WaterDropManager(context);
         }
         return mInstance;
     }
 
     @SuppressLint("InflateParams")
-    private WaterDropManager(Context context) {
+    public WaterDropManager(Context context) {
         mContext = context;
         mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         floatView = LayoutInflater.from(mContext).inflate(R.layout.layout_water_drop, null);
@@ -51,7 +51,7 @@ public class WaterDropManager {
         params.x = 0;
         params.y = 0;
         //总是出现在应用程序窗口之上
-        params.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        params.type = WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY;
         //设置图片格式，效果为背景透明
         params.format = PixelFormat.RGBA_8888;
         params.flags = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS |

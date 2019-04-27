@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -29,15 +28,15 @@ public class WaterDropView extends View {
         this(context, null);
     }
 
-    public WaterDropView(Context context, @Nullable AttributeSet attrs) {
+    public WaterDropView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public WaterDropView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public WaterDropView(Context context, AttributeSet attrs, int defStyleAttr) {
         this(context, attrs, defStyleAttr, 0);
     }
 
-    public WaterDropView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public WaterDropView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         screenWidth = getScreenWidth();
         middleX = screenWidth / 2;
